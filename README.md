@@ -6,7 +6,8 @@ Nagios is the industry standard infrastructure monitoring tool. This integration
 * xMatters account - If you don't have one, [get one](https://www.xmatters.com)!
 
 # Files
-* [Nagios.zip](Nagios.zip) - Nagios comm plan with necessary the notification templates and integration scripts. 
+* [NagiosCommPlan.zip](NagiosCommPlan.zip) - Nagios comm plan with necessary the notification templates and integration scripts. 
+* [xmatters.cfg](xmatters.cfg) - The contact and command entries for the xMatters notifications
 
 # How it works
 This integration uses a Nagios `command` to fire a curl request into the integration builder. The IB then builds the payload and creates the event. 
@@ -16,7 +17,7 @@ This integration uses a Nagios `command` to fire a curl request into the integra
 
 ## xMatters set up
 1. Create a new user called `nagios` and grant the `Standard User`, `Limited Developer` and `REST Web Services User` roles.
-2. Click the Login as This User and nagivate to the Developer tab. Click the Import Plan button and import the [Nagios.zip](Nagios.zip) file. If other users should be able to edit the scripts or forms going forward, click the Edit > Access Permissions on the Nagios Comm Plan and add the necessary users or roles. 
+2. Click the Login as This User and nagivate to the Developer tab. Click the Import Plan button and import the [NagiosCommPlan.zip](NagiosCommPlan.zip) file. If other users should be able to edit the scripts or forms going forward, click the Edit > Access Permissions on the Nagios Comm Plan and add the necessary users or roles. 
 3. Click the Edit drop down next to the Nagios Comm Plan and click Integration Builder. Expand the Inbound services. Click the Copy Url link at the bottom and save the url for later. *Note* This is using URL Authentication which is not the most secure method. Update the authentication method as desired, but be sure to update the `curl` command below with the appropriate authentication info.
 
 ## Nagios set up
@@ -32,12 +33,12 @@ cfg_file=NAGIOS_HOME/etc/xmatters.cfg
 
 ```cfg
 define service{
-    use                		local-service         ; Name of service template to use
-    host_name          		localhost
-    service_description		PING
-	check_command			check_ping!100.0,20%!500.0,60%
-	contacts				xmatters
-	}
+    use                    local-service         ; Name of service template to use
+    host_name              localhost
+    service_description    PING
+    check_command          check_ping!100.0,20%!500.0,60%
+    contacts               xmatters
+  }
 
 ```
 
@@ -49,7 +50,7 @@ define service{
 To test the integration, find a service that can be taken down for testing, or, alternatively, use the "Send custom service notification" on the service updated above. This is a screen shot of the PING service:
 
 <kbd>
-	<img src="media/ping_service.png">
+  <img src="media/ping_service.png">
 </kbd>
 
 
