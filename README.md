@@ -1,5 +1,5 @@
 # Nagios Core
-Nagios is the industry standard infrastructure monitoring tool. This integrationi expands the alerting capabilities of Nagios to leverage the xMatters communication protocols and integration platform for driving workflow across tools. 
+Nagios is the industry standard infrastructure monitoring tool. This integration expands the alerting capabilities of Nagios to leverage the xMatters communication protocols and integration platform for driving workflow across tools. 
 
 # Pre-Requisites
 * Nagios Core 4.3.x
