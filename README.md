@@ -1,6 +1,15 @@
 # Nagios Core
 Nagios is the industry standard infrastructure monitoring tool. This integration expands the alerting capabilities of Nagios to leverage the xMatters communication protocols and integration platform for driving workflow across tools. 
 
+---------
+
+<kbd>
+  <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+</kbd>
+
+---------
+
+
 # Pre-Requisites
 * Nagios Core 4.3.x
 * xMatters account - If you don't have one, [get one](https://www.xmatters.com)!
