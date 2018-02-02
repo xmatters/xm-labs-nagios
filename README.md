@@ -53,6 +53,8 @@ define service{
 
 4. Restart Nagios for the changes to take effect. 
 
+## Adding xMatters to the template
+Instead of adding the `xmatters` contact to each host and service entry, the contact can be added at the template level the host or service inherits from. In the `local-service` example above, instead of adding `xmatters` to the service, track down the template definition for `local-service`. 
 
 
 # Testing
