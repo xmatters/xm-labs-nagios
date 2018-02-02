@@ -69,3 +69,13 @@ The `nagios.cfg` file contains debug logging settings and the debug log informat
 
 If the Activity Stream in xMatters shows the request coming in, then review the stream for any errors thrown. 
 
+## NSS error -5938 Error
+Some curl installations have reported a `NSS error -5938` error when making the curl request to xMatters. This can be solved by adding the `-1, --tlsv1` parameter to force TLS v1. For example:
+
+```
+define command {
+        command_name    notify_xmatters_service
+        command_line    curl --tlsv1 -X POST -H "Content-Type: application/json" -d '{ "NAGIOS_CONTACTGROUPNAME": "$SERVICEDISPLAYNAME$", "NAGIOS_HOSTDISPLAYNAME": "$HOSTDISPLAYNAME$", "NAGIOS_HOSTNAME": "$HOSTNAME$", "NAGIOS_HOSTOUTPUT": "$HOSTOUTPUT$", "NAGIOS_HOSTSTATE": "$HOSTSTATE$", "NAGIOS_LASTHOSTSTATECHANGE": "$LASTHOSTSTATECHANGE$", "NAGIOS_LASTSERVICESTATECHANGE": "$LASTSERVICESTATECHANGE$", "NAGIOS_NOTIFICATIONAUTHOR": "$NOTIFICATIONAUTHOR$", "NAGIOS_NOTIFICATIONCOMMENT": "$NOTIFICATIONCOMMENT$", "NAGIOS_NOTIFICATIONTYPE": "$NOTIFICATIONTYPE$", "NAGIOS_SERVICEDESC": "$SERVICEDESC$", "NAGIOS_SERVICEOUTPUT": "$SERVICEOUTPUT$", "NAGIOS_SERVICESTATE": "$SERVICESTATE$", "NAGIOS_TIMET": "$TIMET$" }' "XMATTERS_INBOUND_URL_HERE"
+}
+```
+
