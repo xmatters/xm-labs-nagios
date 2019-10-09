@@ -30,7 +30,7 @@ This integration uses a Nagios `command` to fire a curl request into one of the 
 3. On the Flows tab, click inside the **New Host Notification** and double click (or click the edit pencil) next to the **New Host Notification** http trigger with the Nagios icon on it. In the dialog presented, copy the url at the bottom. 
 
 <kbd>
-  <img src="/media/triggersettings.png" >
+  <img src="/media/triggersettings.png" width="500">
 </kbd>
 Repeat for the **New Service Notification** flow. Keep urls for later. 
 
