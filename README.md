@@ -15,24 +15,30 @@ Nagios is the industry standard infrastructure monitoring tool. This integration
 * xMatters account - If you don't have one, [get one](https://www.xmatters.com)!
 
 # Files
-* [NagiosCommPlan.zip](NagiosCommPlan.zip) - Nagios comm plan with necessary the notification templates and integration scripts. 
+* [Nagios.zip](Nagios.zip) - Nagios comm plan with necessary the notification templates and integration scripts. 
 * [xmatters.cfg](xmatters.cfg) - The contact and command entries for the xMatters notifications
 
 # How it works
-This integration uses a Nagios `command` to fire a curl request into the integration builder. The IB then builds the payload and creates the event. 
+This integration uses a Nagios `command` to fire a curl request into one of the flow designer canvases, either Host or Service. 
 
 # Installation
 
 
 ## xMatters set up
 1. Create a new user called `nagios` and grant the `Standard User`, `Limited Developer` and `REST Web Services User` roles.
-2. Click the Login as This User and nagivate to the Developer tab. Click the Import Plan button and import the [NagiosCommPlan.zip](NagiosCommPlan.zip) file. If other users should be able to edit the scripts or forms going forward, click the Edit > Access Permissions on the Nagios Comm Plan and add the necessary users or roles. 
-3. Click the Edit drop down next to the Nagios Comm Plan and click Integration Builder. Expand the Inbound services. Click the Copy Url link at the bottom and save the url for later. *Note* This is using URL Authentication which is not the most secure method. Update the authentication method as desired, but be sure to update the `curl` command below with the appropriate authentication info.
+2. Click the Login as This User and nagivate to the Developer tab. Click the Import button and import the [Nagios.zip](Nagios.zip) file. If other users should be able to edit the scripts or forms going forward, click the Edit > Access Permissions on the Nagios Workflow and add the necessary users or roles. 
+3. On the Flows tab, click inside the **New Host Notification** and double click (or click the edit pencil) next to the **New Host Notification** http trigger with the Nagios icon on it. In the dialog presented, copy the url at the bottom. 
+
+<kbd>
+  <img src="/media/triggersettings.png" >
+</kbd>
+Repeat for the **New Service Notification** flow. Keep urls for later. 
+
 
 ## Nagios set up
 
 1. Login to the Nagios host machine and navigate to the `NAGIOS_HOME` directory. 
-2. Copy the [xmatters.cfg](xmatters.cfg) file to the `NAGIOS_HOME/etc` directory. Open this file and replace the `XMATTERS_INBOUND_URL_HERE` value with the inbound url copied from above. *Note* If a different authentication method on the inbound integration was selected above, then the curl command will need to be updated. The `-u, --user` parameter will do basic auth or API Key auth. The syntax will be `--user "username:password"` See the curl help for more details. 
+2. Copy the [xmatters.cfg](xmatters.cfg) file to the `NAGIOS_HOME/etc` directory. Open this file and replace the `XMATTERS_SERVICE_URL_HERE` and `XMATTERS_HOST_URL_HERE` value with the inbound urls copied from above. *Note* If a different authentication method on the inbound integration was selected above, then the curl command will need to be updated. The `-u, --user` parameter will do basic auth or API Key auth. The syntax will be `--user "username:password"` See the curl help for more details. 
 3. Open the `nagios.cfg` file and in the `OBJECT CONFIGURATION FILES` section, add this line, replacing `NAGIOS_HOME` with the full path to Nagios.
 
 ```
@@ -53,7 +59,7 @@ define service{
 
 4. Restart Nagios for the changes to take effect. 
 
-## Adding xMatters to the template
+## Adding xMatters to the template (optional)
 Instead of adding the `xmatters` contact to each host and service entry, the contact can be added at the template level the host or service inherits from. In the `local-service` example above, instead of adding `xmatters` to the service, track down the template definition for `local-service`. 
 
 
@@ -69,7 +75,7 @@ To test the integration, find a service that can be taken down for testing, or, 
 # Troubleshooting
 The `nagios.cfg` file contains debug logging settings and the debug log information. Setting the `debug_level` to `256` and inspecting the `debug_file` file should show debug level information and any errors associated with the curl command. 
 
-If the Activity Stream in xMatters shows the request coming in, then review the stream for any errors thrown. 
+Also check the activity stream in the host or service canvas for additional details.
 
 ## NSS error -5938 Error
 Some curl installations have reported a `NSS error -5938` error when making the curl request to xMatters. This can be solved by adding the `-1, --tlsv1` parameter to force TLS v1. For example:
