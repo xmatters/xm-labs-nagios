@@ -4,7 +4,9 @@ Nagios is the industry standard infrastructure monitoring tool. This integration
 ---------
 
 <kbd>
+  <a href="https://support.xmatters.com/hc/en-us/community/topics">
   <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+  </a>
 </kbd>
 
 ---------
@@ -15,7 +17,7 @@ Nagios is the industry standard infrastructure monitoring tool. This integration
 * xMatters account - If you don't have one, [get one](https://www.xmatters.com)!
 
 # Files
-* [Nagios.zip](Nagios.zip) - Nagios comm plan with necessary the notification templates and integration scripts. 
+* [Nagios.zip](Nagios.zip) - Nagios Workflow with necessary the notification templates and integration scripts. 
 * [xmatters.cfg](xmatters.cfg) - The contact and command entries for the xMatters notifications
 
 # How it works
@@ -26,7 +28,7 @@ This integration uses a Nagios `command` to fire a curl request into one of the 
 
 ## xMatters set up
 1. Create a new user called `nagios` and grant the `Standard User`, `Limited Developer` and `REST Web Services User` roles.
-2. Click the Login as This User and nagivate to the Developer tab. Click the Import button and import the [Nagios.zip](Nagios.zip) file. If other users should be able to edit the scripts or forms going forward, click the Edit > Access Permissions on the Nagios Workflow and add the necessary users or roles. 
+2. Click the Login as This User and nagivate to the Workflow page. Click the Import button and import the [Nagios.zip](Nagios.zip) file. If other users should be able to edit the scripts or forms going forward, click the Edit > Access Permissions on the Nagios Workflow and add the necessary users or roles. 
 3. On the Flows tab, click inside the **New Host Notification** and double click (or click the edit pencil) next to the **New Host Notification** http trigger with the Nagios icon on it. In the dialog presented, copy the url at the bottom. 
 
 <kbd>
