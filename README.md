@@ -11,6 +11,9 @@ Nagios is the industry standard infrastructure monitoring tool. This integration
 
 ---------
 
+An updated version of this integration is available, supporting the latest version of Nagios and based on xMatters Flow Designer so you can easily connect other tools to your toolchain. Install it right from the Workflow Template directory within your xMatters instance. [Learn more](http://help.xmatters.com/integrations/#cshid=Nagios).
+
+---------
 
 # Pre-Requisites
 * Nagios Core 4.3.x
